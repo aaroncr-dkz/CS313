@@ -1,0 +1,63 @@
+body {
+    background-color: #0d58a6;
+    font-family: Verdana, sans-serif;
+    font-size: 1em;
+}
+
+h1 {
+    font-family: Impact;
+}
+
+#container {
+    background-color:;
+    width: 820px;
+    height: auto;
+    margin: auto;
+    background-color: #606060;
+    padding: 7px
+}
+
+#calander {
+    font-family: monospace;
+    font-size: 1.5em;
+    text-align: right;
+
+    border: 3px outset grey;
+    background-color: darkgoldenrod;
+    padding: 12px;
+}
+
+#calander th {
+    padding-right: 6px;
+}
+
+#deal-box {
+    border: 3px outset grey;
+    background-color: darkgoldenrod;
+    padding: 12px;
+    width: 300px;
+}
+
+#crossroad-area {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+[onmouseenter] {
+    color: darkblue;
+    text-decoration: underline;
+
+}
+
+.float-left {
+   float:left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
