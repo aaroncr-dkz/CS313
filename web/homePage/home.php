@@ -16,7 +16,9 @@
             <h1>Operation: Find My Food</h1>
         </header>
 
-        <nav></nav>
+        <nav>
+            <a href="../directory.php">Directory</a>
+        </nav>
 
         <main>
             <p>They say breakfast is the most important meal of the day... I disagree. For the college student lunchtime is critical. Do you go home? But that takes time. Do you pack a lunch? Probably. But you just get tired of eating sandwiches and frozen burritoes every day. Instead, the Crossroads has deals, but you never know what they are, and you've seen you of those student vendors in your building, but you wonder how many others there are on campus? But who's going to go on a scavenger hunt for that? That's what <strong>Operation: Find My Food</strong> is concerned with. And here to fix.</p>
