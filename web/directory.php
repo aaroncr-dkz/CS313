@@ -16,7 +16,10 @@
     </header>
 
     <main>
-        <p>Coming Soon</p>
+        <ul>
+		   <li><a href="homePage/home.php">Home Page Assignment</a></li>
+		   <li><a href="shoppingCart/home.php">Shopping Cart</a></li>
+		</ul>
     </main>
 
     <footer>
