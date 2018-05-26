@@ -1,0 +1,109 @@
+body {
+    background-color: #313166;
+    color: white;
+    font-family: Verdana, sans-serif;
+    font-size: 1em;
+}
+
+h2 {
+    color: #FFE800;
+    padding-left: 7px;
+    margin-bottom: 5px;
+}
+
+label, input {
+    display: block;
+}
+
+/*****************
+* Anchor styles
+*****************/
+a {
+    color: white;
+}
+
+a:visited {
+    color: fuchsia;
+}
+
+a:hover {
+    color: gold;
+}
+
+a:active {
+    color: darkgoldenrod;
+}
+
+#container {
+    width: 820px;
+    height: auto;
+    margin: auto;
+    background-color: #606060;
+    padding: 7px
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-clear {
+    clear: both;
+}
+
+.italic {
+    font-style: italic;
+}
+
+#statisticals {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+#attributes {
+    text-align: right;
+}
+
+#lockBtn, #resetBtn {
+    background-color: brown;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+
+    border: 2px outset gold;
+
+    margin-top: 12px;
+    margin-left: 12px;
+    padding: 7px;
+
+    width: 7%;
+}
+
+/***************
+* Slider
+***************/
+#slidecontainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+}
+
+.slider {
+}
+
+.slider-display {
+    font-family: serif;
+
+    color: black;
+    background-color: #f2d6ac;
+    border: 2px outset brown;
+
+    padding-left: 7px;
+    width: 25%;
+    height: 45%;
+}
