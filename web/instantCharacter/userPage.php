@@ -26,7 +26,7 @@
                     <?php
                     foreach ($characters as $character) {
                         echo "<li>";
-                        echo "<a href='index.php?action=loadCharacter&characterId=$character[CharacterId]'>";
+                        echo "<a href='index.php?action=loadCharacter&characterId=$character[characterid]'>";
                         echo "$character[charactername], Lv. $character[characterlevel] $character[raceid] $character[classid]";
                         echo "</a></li>";
                     }
