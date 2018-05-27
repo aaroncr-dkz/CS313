@@ -53,7 +53,7 @@ switch ($action) {
 		var_dump($_SESSION);
 
         //now get the character's associated with this user
-        $characters = getCharacters($_SESSION['userData']['userId']);
+        $characters = getCharacters($_SESSION['userData']['userid']);
 		var_dump($characters);
 
         include "userPage.php";
