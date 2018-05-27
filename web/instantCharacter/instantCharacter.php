@@ -4,12 +4,12 @@ session_start();
 if (isset($_SESSION['character'])) {
     $character = $_SESSION['character'];
 
-    $str = $character['CharacterStrength'];
-    $dex = $character['CharacterDexterity'];
-    $con = $character['CharacterConstitution'];
-    $int = $character['CharacterIntelligence'];
-    $wis = $character['CharacterWisdom'];
-    $cha = $character['CharacterCharisma'];
+    $str = $character['characterstrength'];
+    $dex = $character['characterdexterity'];
+    $con = $character['characterconstitution'];
+    $int = $character['characterintelligence'];
+    $wis = $character['characterwisdom'];
+    $cha = $character['charactercharisma'];
 }
 
 session_destroy();
@@ -28,7 +28,7 @@ session_destroy();
     </head>
 
     <body <?php if (isset($character)) {
-    echo "onload='loadCharacter($character[CharacterLevel], $character[RaceId], $character[ClassId], $str, $dex, $con, $int, $wis, $cha)'";
+    echo "onload='loadCharacter($character[characterlevel], $character[raceid], $character[classid], $str, $dex, $con, $int, $wis, $cha)'";
 } ?>>
         <header>
             <h1>Instant Character Generator</h1>
@@ -45,7 +45,7 @@ session_destroy();
                 <!--<form>-->
                     <label>Character Name: </label>
                     <input type="text" placeholder="Character Name" required 
-                        <?php if (isset($character)) {echo "value='$character[CharacterName]'";} ?> 
+                        <?php if (isset($character)) {echo "value='$character[charactername]'";} ?> 
                            />
 
                     <table>
@@ -53,7 +53,7 @@ session_destroy();
                             <td>Level:</td>
                             <td>
                                 <input type="range" min="1" max="20" class="slider" id="level" 
-                            <?php if (isset($character)) {echo "value='$character[CharacterLevel]'";} else {echo "value='1'";}?> 
+                            <?php if (isset($character)) {echo "value='$character[characterlevel]'";} else {echo "value='1'";}?> 
                                 />
                             </td>
                             <td>
@@ -65,7 +65,7 @@ session_destroy();
                             <td>Race:</td>
                             <td>
                                 <input type="range" min="0" max="13" class="slider" id="race" 
-                                    <?php if (isset($character)) {echo "value='" . ($character['RaceId'] - 1) . "'";}?> 
+                                    <?php if (isset($character)) {echo "value='" . ($character['raceid'] - 1) . "'";}?> 
                                 />
                             </td>
                             <td>
@@ -77,7 +77,7 @@ session_destroy();
                             <td>Class:</td>
                             <td>
                                 <input type="range" min="0" max="11" class="slider" id="class" 
-                                    <?php if (isset($character)) {echo "value='" . ($character['ClassId'] - 1) . "'";}?> 
+                                    <?php if (isset($character)) {echo "value='" . ($character['classid'] - 1) . "'";}?> 
                                 />
                             </td>
                             <td>
@@ -150,7 +150,7 @@ session_destroy();
                             </table>
                             <ul>
                                 <li>Hit Points: <span id="hp">
-                                    <?php if (isset($character)) {echo $character['CharacterHealth'];}?>
+                                    <?php if (isset($character)) {echo $character['characterhealth'];}?>
                                                 </span>
                                 </li>
                             </ul>

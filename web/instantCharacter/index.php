@@ -49,12 +49,9 @@ switch ($action) {
 
         // Store the array into the session
         $_SESSION['userData'] = $userData;
-		var_dump($userData);
-		var_dump($_SESSION);
 
         //now get the character's associated with this user
         $characters = getCharacters($_SESSION['userData']['userid']);
-		var_dump($characters);
 
         include "userPage.php";
         break;
