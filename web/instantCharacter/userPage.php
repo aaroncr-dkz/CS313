@@ -33,6 +33,7 @@
                     ?>
                 </ul>
             </section>
+	    </main>
     </body>
 
     <footer>

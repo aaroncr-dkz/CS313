@@ -11,6 +11,8 @@ if (isset($_SESSION['character'])) {
     $wis = $character['CharacterWisdom'];
     $cha = $character['CharacterCharisma'];
 }
+
+session_destroy();
 ?>
 
 <!DOCTYPE html>
