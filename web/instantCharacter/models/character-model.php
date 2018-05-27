@@ -4,7 +4,7 @@
 function getCharacters($userId) {
     
     // Create a connection object using the acme connection function
-    $db = localConnect();
+    $db = herokuConnect();
         
     // The SQL statement to be used with the database
     $sql = 'SELECT CharacterId, CharacterName, CharacterLevel, RaceId, ClassId'
