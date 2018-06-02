@@ -95,16 +95,16 @@ function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $w
 function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
     $db = herokuConnect();
-   
+   echo "Hello ";
     // The SQL statement
     $sql = 'UPDATE characters SET userid = :userId, charactername = :name, characterstrength = :str, characterdexterity = :dex, 
                                   characterconstitution = :con, characterintelligence = :int, characterwisdom = :wis,
                                   charactercharisma = :cha, characterlevel = :lvl, characterhealth = :hp, raceid = :race, 
                                   classid = :class WHERE characterid = :charId';
-   
+   echo "there ";
     // Create the prepared statement using the connection
     $stmt = $db->prepare($sql);
-   
+   echo "general ";
 // The next lines replace the placeholders in the SQL
 // statement with the actual values in the variables
 // and tells the database the type of data it is
@@ -121,7 +121,7 @@ function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex
     $stmt->bindValue(':cha', $cha, PDO::PARAM_INT);
     $stmt->bindValue(':lvl', $level, PDO::PARAM_INT);
     $stmt->bindValue(':hp', $hp, PDO::PARAM_INT);
-       
+       echo "kenobi ";
     // Insert the data
     $stmt->execute();
    
