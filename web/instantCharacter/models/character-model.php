@@ -95,13 +95,13 @@ function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $w
 function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
     $db = localConnect();
-   
+   		echo "$userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp\n";
     // The SQL statement
     $sql = 'UPDATE characters SET userId = :userId, characterName = :name, characterStrength = :str, characterDexterity = :dex, 
                                   characterConstitution = :con, characterIntelligence = :int, characterWisdom = :wis,
                                   characterCharisma = :cha, characterLevel = :lvl, characterHealth = :hp, raceId = :race, 
                                   classId = :class WHERE characterId = :charId';
-   
+
     // Create the prepared statement using the connection
     $stmt = $db->prepare($sql);
    
@@ -121,7 +121,7 @@ function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex
     $stmt->bindValue(':cha', $cha, PDO::PARAM_INT);
     $stmt->bindValue(':lvl', $level, PDO::PARAM_INT);
     $stmt->bindValue(':hp', $hp, PDO::PARAM_INT);
-       
+          echo "$sql\n";
     // Insert the data
     $stmt->execute();
    

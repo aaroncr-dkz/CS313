@@ -53,7 +53,6 @@ switch ($action) {
         $cha = filter_input(INPUT_POST, 'cha', FILTER_SANITIZE_NUMBER_INT);
         $hp = filter_input(INPUT_POST, 'health', FILTER_SANITIZE_NUMBER_INT);
 
-		echo "$userId, $characterId, $name, $level";
         $outcome = updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp);
 
 		// Check and report the result
