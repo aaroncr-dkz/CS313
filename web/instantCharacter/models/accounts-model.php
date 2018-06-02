@@ -24,17 +24,18 @@ function getUser($screenName) {
     return $userData;  
 }
 
-function regUser($screenName, $password) {
+function regUser($screenName, $email, $password) {
 // Create a connection object using the acme connection function
    $db = herokuConnect();
    
 // The SQL statement
-   $sql = 'INSERT INTO users (screenname, password) VALUES (:screenName, :password)';
+   $sql = 'INSERT INTO users (screenname, email, password) VALUES (:screenName, :email, :password)';
    
 // Create the prepared statement using the acme connection
    $stmt = $db->prepare($sql);
    
    $stmt->bindValue(':screenName', $screenName, PDO::PARAM_STR);
+   $stmt->bindValue(':email', $email, PDO::PARAM_STR);
    $stmt->bindValue(':password', $password, PDO::PARAM_STR);
    
 // Insert the data
