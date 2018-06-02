@@ -1,3 +1,6 @@
+/*------------------------------------------------------------------------------
+ * 
+ -----------------------------------------------------------------------------*/
 var outputLevel = document.getElementById("display-level");
 var outputRace = document.getElementById("display-race");
 var outputClass = document.getElementById("display-class");
@@ -191,7 +194,9 @@ var classAttPrefs = {
     }
 };
 
-
+/*------------------------------------------------------------------------------
+ * 
+ -----------------------------------------------------------------------------*/
 inputLevel.addEventListener("input", function () {
     outputLevel.innerHTML = "Lv. " + this.value;
     level = this.value;
@@ -213,6 +218,14 @@ inputBackground.addEventListener("input", function () {
     outputBackground.innerHTML = backgrounds[this.value];
 });
 
+document.getElementById("lockBtn").addEventListener("click", function(event){
+    event.preventDefault();
+}); 
+
+
+/*------------------------------------------------------------------------------
+ * 
+ -----------------------------------------------------------------------------*/
 function loadCharacter(theLevel, theRace, theClass, str, dex, con, int, wis, cha) {
     outputLevel.innerHTML = "Lv. " + theLevel;
     outputRace.innerHTML = races[theRace - 1];
@@ -299,8 +312,9 @@ function applyLevelUps(chosenClass, lvl) {
         hp = 8 + conMod + ((5 + conMod) * (lvl - 1));
     }
     document.getElementById("hp").innerHTML = hp;
+    document.getElementById("health").value = hp;
 
-
+/*
     var lvldAtts = [0,0,0,0,0,0];
     // apply ability score increases
     if(lvl >= 4) {
@@ -331,7 +345,7 @@ function applyLevelUps(chosenClass, lvl) {
     for(var i = 0; i < 6; i++) {
        totalAtts[i] += lvldAtts[i];
     }
-
+*/
 }
 
 function addRaceBonus(chosenRace) {
@@ -435,27 +449,33 @@ function rollOneDie() {
 function applyToScreen(atts) {
     mods = [0,0,0,0,0,0];
 
-    document.getElementById("strScore").innerHTML = atts[0];
+    document.getElementById("strScore").value = atts[0];
+    document.getElementById("strDisplay").innerHTML = atts[0];
     mods[0] = Math.floor((atts[0] / 2) - 5);
     document.getElementById("strMod").innerHTML = mods[0];
 
-    document.getElementById("dexScore").innerHTML = atts[1];
+    document.getElementById("dexScore").value = atts[1];
+    document.getElementById("dexDisplay").innerHTML = atts[1];
     mods[1] = Math.floor((atts[1] / 2) - 5);
     document.getElementById("dexMod").innerHTML = mods[1];
 
-    document.getElementById("conScore").innerHTML = atts[2];
+    document.getElementById("conScore").value = atts[2];
+    document.getElementById("conDisplay").innerHTML = atts[2];
     mods[2] = Math.floor((atts[2] / 2) - 5);
     document.getElementById("conMod").innerHTML = mods[2];
 
-    document.getElementById("intScore").innerHTML = atts[3];
+    document.getElementById("intScore").value = atts[3];
+    document.getElementById("intDisplay").innerHTML = atts[3];
     mods[3] = Math.floor((atts[3] / 2) - 5);
     document.getElementById("intMod").innerHTML = mods[3];
 
-    document.getElementById("wisScore").innerHTML = atts[4];
+    document.getElementById("wisScore").value = atts[4];
+    document.getElementById("wisDisplay").innerHTML = atts[4];
     mods[4] = Math.floor((atts[4] / 2) - 5);
     document.getElementById("wisMod").innerHTML = mods[4];
 
-    document.getElementById("chaScore").innerHTML = atts[5];
+    document.getElementById("chaScore").value = atts[5];
+    document.getElementById("chaDisplay").innerHTML = atts[5];
     mods[5] = Math.floor((atts[5] / 2) - 5);
     document.getElementById("chaMod").innerHTML = mods[5];
 }

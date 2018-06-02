@@ -34,53 +34,20 @@ a:active {
     color: darkgoldenrod;
 }
 
-#container {
-    width: 820px;
-    height: auto;
-    margin: auto;
-    background-color: #606060;
-    padding: 7px
+.anchor-no-underline {
+    text-decoration: none;
 }
 
-.float-left {
-    float: left;
-}
-
-.float-right {
-    float: right;
-}
-
-.float-clear {
-    clear: both;
-}
-
-.italic {
-    font-style: italic;
-}
-
-#statisticals {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-}
-
-#attributes {
-    text-align: right;
-}
-
-#lockBtn, #resetBtn {
-    background-color: brown;
+.anchor-no-visited:visited {
     color: white;
-    font-size: 1.2em;
-    text-align: center;
+}
 
-    border: 2px outset gold;
+.anchor-no-visited:hover {
+    color: gold;
+}
 
-    margin-top: 12px;
-    margin-left: 12px;
-    padding: 7px;
-
-    width: 7%;
+.anchor-no-visited:active {
+    color: darkgoldenrod;
 }
 
 /***************
@@ -104,6 +71,97 @@ a:active {
     border: 2px outset brown;
 
     padding-left: 7px;
-    width: 25%;
+    width: 300px;
     height: 45%;
+}
+
+/*****************
+* IDs
+*****************/
+
+#statisticals {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+#attributes {
+    text-align: right;
+}
+
+#attributes td {
+    padding: 2px 3px 2px 3px;
+}
+
+#lockBtn, #resetBtn, #submitBtn, #updateBtn {
+    background-color: brown;
+    color: white;
+    font-size: 1.2em;
+    text-align: center;
+
+    border: 2px outset gold;
+
+    margin-top: 12px;
+    margin-left: 12px;
+    padding: 7px;
+
+    width: 100px;
+}
+
+/*****************
+* Form Box
+*****************/
+#form-box {
+    background-color: #606060;
+    border: 2px outset gold;
+    width: 50%;
+    padding: 10px;
+    margin: auto;
+}
+
+#form-box label {
+    margin-top: 12px;
+}
+
+#form-box input[type="submit"] {
+    margin-top: 15px;
+}
+
+/*****************
+* Character Display
+*****************/
+
+#character-display {
+    font-size: 0.9em;
+    margin: auto;
+    height: auto;
+    background-color: #606060;
+    padding: 7px
+}
+
+#character-display li {
+    margin-top: 7px;
+}
+
+/*****************
+* Classes
+*****************/
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.float-clear {
+    clear: both;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.display-none {
+    display: none;
 }
