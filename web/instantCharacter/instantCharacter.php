@@ -155,12 +155,12 @@ if (isset($_SESSION['character'])) {
                                 </tr>
                             </table>
                             
-                            <input type="hidden" name="str" id="strScore" value="">
-                            <input type="hidden" name="dex" id="dexScore" value="">
-                            <input type="hidden" name="con" id="conScore" value="">
-                            <input type="hidden" name="int" id="intScore" value="">
-                            <input type="hidden" name="wis" id="wisScore" value="">
-                            <input type="hidden" name="cha" id="chaScore" value="">
+                            <input type="hidden" name="str" id="strScore" value="<?php if (isset($character)) {echo $str;}?>">
+                            <input type="hidden" name="dex" id="dexScore" value="<?php if (isset($character)) {echo $dex;}?>">
+                            <input type="hidden" name="con" id="conScore" value="<?php if (isset($character)) {echo $con;}?>">
+                            <input type="hidden" name="int" id="intScore" value="<?php if (isset($character)) {echo $int;}?>">
+                            <input type="hidden" name="wis" id="wisScore" value="<?php if (isset($character)) {echo $wis;}?>">
+                            <input type="hidden" name="cha" id="chaScore" value="<?php if (isset($character)) {echo $cha;}?>">
                             <input type="hidden" name="health" id="health" value="<?php if (isset($character)) {echo $character['characterhealth'];}?>">
                             <?php if(isset($_SESSION["userData"])) {
                                 echo "<input type='hidden' name='userId' value='" . $_SESSION["userData"]["userid"] . "'>\n";

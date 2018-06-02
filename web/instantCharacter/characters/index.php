@@ -42,8 +42,8 @@ switch ($action) {
 
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
         $level = filter_input(INPUT_POST, 'level', FILTER_SANITIZE_NUMBER_INT);
-        $race = filter_input(INPUT_POST, 'race', FILTER_SANITIZE_NUMBER_INT);
-        $class = filter_input(INPUT_POST, 'class', FILTER_SANITIZE_NUMBER_INT);
+        $race = filter_input(INPUT_POST, 'race', FILTER_SANITIZE_NUMBER_INT) + 1;
+        $class = filter_input(INPUT_POST, 'class', FILTER_SANITIZE_NUMBER_INT) + 1;
 
         $str = filter_input(INPUT_POST, 'str', FILTER_SANITIZE_NUMBER_INT);
         $dex = filter_input(INPUT_POST, 'dex', FILTER_SANITIZE_NUMBER_INT);
