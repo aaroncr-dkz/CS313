@@ -55,7 +55,7 @@ switch ($action) {
 
         updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp);
 
-        header("Location: ../accounts/?action=login");
+        //header("Location: ../accounts/?action=login");
         break;
     case "loadCharacter":
         // Filter and store the data
