@@ -20,7 +20,7 @@ switch ($action) {
     case 'login':
         if (isset($_SESSION['userData'])) {
             //now get the character's associated with this user
-            $characters = getCharacters($_SESSION['userData']['userId']);
+            $characters = getCharacters($_SESSION['userData']['userid']);
 
             include "../views/userPage.php";
             exit;
