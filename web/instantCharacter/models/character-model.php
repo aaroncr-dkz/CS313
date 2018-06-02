@@ -17,7 +17,8 @@ function getCharacters($userId) {
     $stmt->bindValue(':userId', $userId, PDO::PARAM_STR);
     $stmt->execute();
     $characters = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
+    var_dump($characters);
+	
     // Close the database interaction
     $stmt->closeCursor();
         
