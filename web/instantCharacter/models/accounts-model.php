@@ -7,8 +7,8 @@ function getUser($screenName) {
     $db = herokuConnect();
         		echo "Hello";
     // The SQL statement to be used with the database
-    $sql = 'SELECT userid, screenname, email, password '
-            . ' FROM users WHERE screenname = :ScreenName';
+    $sql = 'SELECT userId, screenName, Email, Password '
+            . ' FROM Users WHERE screenName = :ScreenName';
         echo "there";
     // Create the prepared statement using the acme connection
     $stmt = $db->prepare($sql);
