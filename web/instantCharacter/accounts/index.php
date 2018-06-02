@@ -44,14 +44,14 @@ switch ($action) {
         $userData = getUser($screenName);
 
         // Compare the password just submitted against the hashed password for the matching client
-        $hashCheck = password_verify($password, $userData['Password']);
+        //$hashCheck = password_verify($password, $userData['Password']);
 
         // If the hashes don't match create an error and return to the login view
-        if (!$hashCheck) {
-            $message = '<p>Please provide a valid username and password</p>';
-            include '../login.php';
-            exit;
-        }
+        //if (!$hashCheck) {
+        //    $message = '<p>Please provide a valid username and password</p>';
+        //    include '../login.php';
+        //    exit;
+        //}
 
         // Remove the password from the array
         // the array_pop function removes the last element from an array
