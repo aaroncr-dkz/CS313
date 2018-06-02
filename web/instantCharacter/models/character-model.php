@@ -94,7 +94,7 @@ function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $w
 
 function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
-    $db = localConnect();
+    $db = herokuConnect();
    		echo "$userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp\n";
     // The SQL statement
     $sql = 'UPDATE characters SET userId = :userId, characterName = :name, characterStrength = :str, characterDexterity = :dex, 
