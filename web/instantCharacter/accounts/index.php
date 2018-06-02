@@ -40,7 +40,7 @@ switch ($action) {
             include "../views/login.php";
             exit;
         }
-
+		echo "Hello";
         $userData = getUser($screenName);
 
         // Compare the password just submitted against the hashed password for the matching client
