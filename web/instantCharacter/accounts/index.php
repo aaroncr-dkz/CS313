@@ -95,7 +95,7 @@ switch ($action) {
 
         // Hash the checked password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-echo "$screenName, $password, $hashedPassword, $duplicateUser\n";
+		
         // Send the data to the model
         $regOutcome = regUser($screenName, $hashedPassword);
 echo "$screenName, $password, $hashedPassword, $duplicateUser, $regOutcome\n";

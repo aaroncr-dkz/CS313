@@ -29,6 +29,9 @@
                 <form method="post" action="?action=register">
                     <label>Username:</label>
                     <input type="text" name="screenName" required>
+					
+					<label>Email:</label>
+                    <input type="text" name="screenName" required>
 
                     <label>Password</label>
                     <input type="password" name="password" required>
