@@ -4,7 +4,7 @@
  * Database Connections
  */
 
-function heroku connection() {
+function herokuConnect() {
 	try {
 		$dbUrl = getenv('DATABASE_URL');
 		
