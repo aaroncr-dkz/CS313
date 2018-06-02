@@ -54,7 +54,7 @@ switch ($action) {
         $hp = filter_input(INPUT_POST, 'health', FILTER_SANITIZE_NUMBER_INT);
 
         $outcome = updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp);
-
+		echo $outcome;
 		// Check and report the result
         if($outcome === 1){
             header("Location: ../accounts/?action=login");

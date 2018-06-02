@@ -121,7 +121,8 @@ function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex
     $stmt->bindValue(':cha', $cha, PDO::PARAM_INT);
     $stmt->bindValue(':lvl', $level, PDO::PARAM_INT);
     $stmt->bindValue(':hp', $hp, PDO::PARAM_INT);
-          echo "$sql\n";
+
+	var_dump($stmt);
     // Insert the data
     $stmt->execute();
    
