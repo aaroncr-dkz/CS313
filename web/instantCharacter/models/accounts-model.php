@@ -4,11 +4,11 @@
 function getUser($screenName) {
     
     // Create a connection object using the acme connection function
-    $db = localConnect();
+    $db = herokuConnect();
         
     // The SQL statement to be used with the database
-    $sql = 'SELECT userId, ScreenName, Email, Password '
-            . ' FROM Users WHERE ScreenName = :ScreenName';
+    $sql = 'SELECT userid, screenname, email, password '
+            . ' FROM users WHERE screenname = :ScreenName';
         
     // Create the prepared statement using the acme connection
     $stmt = $db->prepare($sql);
@@ -26,10 +26,10 @@ function getUser($screenName) {
 
 function regUser($screenName, $password) {
 // Create a connection object using the acme connection function
-   $db = localConnect();
+   $db = herokuConnect();
    
 // The SQL statement
-   $sql = 'INSERT INTO users (ScreenName, Password) VALUES (:screenName, :password)';
+   $sql = 'INSERT INTO users (screenname, password) VALUES (:screenName, :password)';
    
 // Create the prepared statement using the acme connection
    $stmt = $db->prepare($sql);
@@ -53,10 +53,10 @@ function regUser($screenName, $password) {
 //check for already existing email addresses
 function checkExistingUsers($screenName) {
     // Create a connection object using the acme connection function
-    $db = localConnect();
+    $db = herokuConnect();
     
     // The SQL statement to be used with the database
-    $sql = 'SELECT screenName FROM users WHERE screenName = :screenName';
+    $sql = 'SELECT screenname FROM users WHERE screenname = :screenName';
     
     // Create the prepared statement using the acme connection
     $stmt = $db->prepare($sql);
