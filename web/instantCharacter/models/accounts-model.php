@@ -16,6 +16,8 @@ function getUser($screenName) {
     $stmt->bindValue(':ScreenName', $screenName, PDO::PARAM_STR);
     $stmt->execute();
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
+	var_dump($userData);
+	exit;
         
     // Close the database interaction
     $stmt->closeCursor();
