@@ -4,12 +4,12 @@ session_start();
 if (isset($_SESSION['character'])) {
     $character = $_SESSION['character'];
 
-    $str = $character['CharacterStrength'];
-    $dex = $character['CharacterDexterity'];
-    $con = $character['CharacterConstitution'];
-    $int = $character['CharacterIntelligence'];
-    $wis = $character['CharacterWisdom'];
-    $cha = $character['CharacterCharisma'];
+    $str = $character['characterstrength'];
+    $dex = $character['characterdexterity'];
+    $con = $character['characterconstitution'];
+    $int = $character['characterintelligence'];
+    $wis = $character['characterwisdom'];
+    $cha = $character['charactercharisma'];
 }
 ?>
 
@@ -25,7 +25,7 @@ if (isset($_SESSION['character'])) {
     </head>
 
     <body <?php if (isset($character)) {
-    echo "onload='loadCharacter($character[CharacterLevel], $character[RaceId], $character[ClassId], $str, $dex, $con, $int, $wis, $cha)'";
+    echo "onload='loadCharacter($character[characterlevel], $character[raceid], $character[classid], $str, $dex, $con, $int, $wis, $cha)'";
 } ?>>
         <header>
             <h1>Instant Character Generator</h1>
@@ -49,7 +49,7 @@ if (isset($_SESSION['character'])) {
                 <form method="post" action="characters/?action=saveCharacter">
                     <label>Character Name: </label>
                     <input type="text" placeholder="Character Name" name="name" required 
-                        <?php if (isset($character)) {echo "value='$character[CharacterName]'";} ?> 
+                        <?php if (isset($character)) {echo "value='$character[charactername]'";} ?> 
                            />
 
                     <table>
@@ -57,7 +57,7 @@ if (isset($_SESSION['character'])) {
                             <td>Level:</td>
                             <td>
                                 <input type="range" min="1" max="20" name="level" class="slider" id="level" 
-                            <?php if (isset($character)) {echo "value='$character[CharacterLevel]'";} else {echo "value='1'";}?> 
+                            <?php if (isset($character)) {echo "value='$character[characterlevel]'";} else {echo "value='1'";}?> 
                                 />
                             </td>
                             <td>
@@ -70,7 +70,7 @@ if (isset($_SESSION['character'])) {
                             <td>Race:</td>
                             <td>
                                 <input type="range" min="0" max="13" name="race" class="slider" id="race" 
-                                    <?php if (isset($character)) {echo "value='" . ($character['RaceId'] - 1) . "'";}?> 
+                                    <?php if (isset($character)) {echo "value='" . ($character['raceid'] - 1) . "'";}?> 
                                 />
                             </td>
                             <td>
@@ -83,7 +83,7 @@ if (isset($_SESSION['character'])) {
                             <td>Class:</td>
                             <td>
                                 <input type="range" min="0" max="11" name="class" class="slider" id="class" 
-                                    <?php if (isset($character)) {echo "value='" . ($character['ClassId'] - 1) . "'";}?> 
+                                    <?php if (isset($character)) {echo "value='" . ($character['classid'] - 1) . "'";}?> 
                                 />
                             </td>
                             <td>
@@ -163,17 +163,17 @@ if (isset($_SESSION['character'])) {
                             <input type="hidden" name="cha" id="chaScore" value="">
                             <input type="hidden" name="health" id="health" value="">
                             <?php if(isset($_SESSION["userData"])) {
-                                echo "<input type='hidden' name='userId' value='" . $_SESSION["userData"]["userId"] . "'>";
+                                echo "<input type='hidden' name='userId' value='" . $_SESSION["userData"]["userid"] . "'>";
                             }
                             ?>
                             <?php if(isset($_SESSION["character"])) {
-                                echo "<input type='hidden' name='characterId' value='" . $character["CharacterId"] . "'>";
+                                echo "<input type='hidden' name='characterId' value='" . $character["characterid"] . "'>";
                             }
                             ?>
                             
                             <ul>
                                 <li>Hit Points: <span id="hp">
-                                    <?php if (isset($character)) {echo $character['CharacterHealth'];}?>
+                                    <?php if (isset($character)) {echo $character['characterhealth'];}?>
                                                 </span>
                                 </li>
                             </ul>
