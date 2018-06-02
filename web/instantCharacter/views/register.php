@@ -31,7 +31,7 @@
                     <input type="text" name="screenName" required>
 					
 					<label>Email:</label>
-                    <input type="text" name="screenName" required>
+                    <input type="text" name="email" required>
 
                     <label>Password</label>
                     <input type="password" name="password" required>

@@ -75,7 +75,9 @@ switch ($action) {
     case 'register':
         // Filter and store the data
         $screenName = filter_input(INPUT_POST, 'screenName', FILTER_SANITIZE_STRING);
+	    $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
+
 
         //check for existing screenName
         $duplicateUser = checkExistingUsers($screenName);
@@ -87,7 +89,7 @@ switch ($action) {
         }
 
         // Check for missing data
-        if(empty($screenName) || empty($password)){
+        if(empty($screenName) || empty($email) || empty($password)){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../views/register.php';
             exit;
@@ -97,7 +99,7 @@ switch ($action) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 		
         // Send the data to the model
-        $regOutcome = regUser($screenName, $hashedPassword);
+        $regOutcome = regUser($screenName, $email, $hashedPassword);
 echo "$screenName, $password, $hashedPassword, $duplicateUser, $regOutcome\n";
         // Check and report the result
         if($regOutcome === 1){
