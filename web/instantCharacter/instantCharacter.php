@@ -163,18 +163,17 @@ if (isset($_SESSION['character'])) {
                             <input type="hidden" name="cha" id="chaScore" value="">
                             <input type="hidden" name="health" id="health" value="">
                             <?php if(isset($_SESSION["userData"])) {
-                                echo "<input type='hidden' name='userId' value='" . $_SESSION["userData"]["userid"] . "'>";
+                                echo "<input type='hidden' name='userId' value='" . $_SESSION["userData"]["userid"] . "'>\n";
                             }
                             ?>
                             <?php if(isset($_SESSION["character"])) {
-                                echo "<input type='hidden' name='characterId' value='" . $character["characterid"] . "'>";
+                                echo "<input type='hidden' name='characterId' value='" . $character["characterid"] . "'>\n";
                             }
                             ?>
                             
                             <ul>
-                                <li>Hit Points: <span id="hp">
-                                    <?php if (isset($character)) {echo $character['characterhealth'];}?>
-                                                </span>
+                                <li>
+								   Hit Points: <span id="hp"><?php if (isset($character)) {echo $character['characterhealth'];}?></span>
                                 </li>
                             </ul>
                         </div>
@@ -183,15 +182,15 @@ if (isset($_SESSION['character'])) {
                        <!--<button id="resetBtn" class="btn-transition">Reset All</button>-->
                     </section>
                 <?php if(isset($_SESSION["userData"]) && !isset($_SESSION['character'])) {
-                    echo "<input type='submit' id='submitBtn' value='Save'>";
-                    echo "<input type='hidden' name='action' value='saveCharacter'>";
+                    echo "<input type='submit' id='submitBtn' value='Save'>\n";
+                    echo "<input type='hidden' name='action' value='saveCharacter'>\n";
                 } 
                 elseif(isset($_SESSION["userData"]) && isset($_SESSION['character'])) {
-                    echo "<input type='submit' id='updateBtn' value='Update'>";
-                    echo "<input type='hidden' name='action' value='updateCharacter'>";
+                    echo "<input type='submit' id='updateBtn' value='Update'>\n";
+                    echo "<input type='hidden' name='action' value='updateCharacter'>\n";
                 } 
                 else {
-                    echo "<p>You must log in in order to save characters</p>";
+                    echo "<p>You must log in in order to save characters</p>\n";
                 } ?>
             </form>
         </section>
