@@ -53,9 +53,18 @@ switch ($action) {
         $cha = filter_input(INPUT_POST, 'cha', FILTER_SANITIZE_NUMBER_INT);
         $hp = filter_input(INPUT_POST, 'health', FILTER_SANITIZE_NUMBER_INT);
 
-        updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp);
+        $outcome = updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp);
 
-        header("Location: ../accounts/?action=login");
+		// Check and report the result
+        if($outcome === 1){
+            header("Location: ../accounts/?action=login");
+            exit;
+        } else {
+            $message = "<p>Something went wrong, please try again.</p>";
+            header("Location: ../instantCharacter.php");
+            exit;
+        }
+        
         break;
     case "loadCharacter":
         // Filter and store the data
