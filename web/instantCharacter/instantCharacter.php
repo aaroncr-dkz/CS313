@@ -161,7 +161,7 @@ if (isset($_SESSION['character'])) {
                             <input type="hidden" name="int" id="intScore" value="">
                             <input type="hidden" name="wis" id="wisScore" value="">
                             <input type="hidden" name="cha" id="chaScore" value="">
-                            <input type="hidden" name="health" id="health" value="">
+                            <input type="hidden" name="health" id="health" value="<?php if (isset($character)) {echo $character['characterhealth'];}?>">
                             <?php if(isset($_SESSION["userData"])) {
                                 echo "<input type='hidden' name='userId' value='" . $_SESSION["userData"]["userid"] . "'>\n";
                             }
