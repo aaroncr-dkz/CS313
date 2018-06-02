@@ -2,10 +2,10 @@
 
 // Get client data based on a screenName
 function getUser($screenName) {
-    
+    		echo "Hello";
     // Create a connection object using the acme connection function
     $db = herokuConnect();
-        
+        		echo "Hello";
     // The SQL statement to be used with the database
     $sql = 'SELECT userid, screenname, email, password '
             . ' FROM users WHERE screenname = :ScreenName';
