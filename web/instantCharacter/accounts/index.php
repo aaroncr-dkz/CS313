@@ -76,29 +76,29 @@ switch ($action) {
         // Filter and store the data
         $screenName = filter_input(INPUT_POST, 'screenName', FILTER_SANITIZE_STRING);
         $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-echo "$screenName, $password\n";
+
         //check for existing screenName
         $duplicateUser = checkExistingUsers($screenName);
-echo "$screenName, $password\n";
+
         if($duplicateUser) {
             $message = "<p>That name is already in use. Do you want to login instead?</p>";
             include '../views/login.php';
             exit;
         }
-echo "$screenName, $password\n";
+
         // Check for missing data
         if(empty($screenName) || empty($password)){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../views/register.php';
             exit;
         }
-echo "$screenName, $password\n";
+
         // Hash the checked password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-echo "$screenName, $password\n";
+echo "$screenName, $password, $hashedPassword, $duplicateUser\n";
         // Send the data to the model
         $regOutcome = regUser($screenName, $hashedPassword);
-echo "$screenName, $password\n";
+echo "$screenName, $password, $hashedPassword, $duplicateUser, $regOutcome\n";
         // Check and report the result
         if($regOutcome === 1){
             $message = "<p>Thanks for registering. Please use your username and password to login.</p>";
