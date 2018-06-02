@@ -8,8 +8,8 @@ function getCharacters($userId) {
         
     // The SQL statement to be used with the database
     $sql = 'SELECT characterid, charactername, characterlevel, r.racename, cl.classname'
-            . ' FROM characters c INNER JOIN races r ON c.raceid = r.raceid INNER JOIN classes cl'
-            . ' ON c.classid = cl.classid WHERE userid = :userId';
+            . ' FROM characters INNER JOIN races ON characters.raceid = races.raceid INNER JOIN classes'
+            . ' ON characters.classid = classes.classid WHERE userid = :userId';
         
     // Create the prepared statement using the connection
     $stmt = $db->prepare($sql);
