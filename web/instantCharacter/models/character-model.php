@@ -94,17 +94,17 @@ function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $w
 
 function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
-    $db = herokuConnect();
-
+    $db = localConnect();
+   
     // The SQL statement
-    $sql = 'UPDATE characters SET userid = :userId, charactername = :name, characterstrength = :str, characterdexterity = :dex, 
-                                  characterconstitution = :con, characterintelligence = :int, characterwisdom = :wis,
-                                  charactercharisma = :cha, characterlevel = :lvl, characterhealth = :hp, raceid = :race, 
-                                  classid = :class WHERE characterid = :charId';
-
+    $sql = 'UPDATE characters SET userId = :userId, characterName = :name, characterStrength = :str, characterDexterity = :dex, 
+                                  characterConstitution = :con, characterIntelligence = :int, characterWisdom = :wis,
+                                  characterCharisma = :cha, characterLevel = :lvl, characterHealth = :hp, raceId = :race, 
+                                  classId = :class WHERE characterId = :charId';
+   
     // Create the prepared statement using the connection
     $stmt = $db->prepare($sql);
-
+   
 // The next lines replace the placeholders in the SQL
 // statement with the actual values in the variables
 // and tells the database the type of data it is
@@ -121,16 +121,16 @@ function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex
     $stmt->bindValue(':cha', $cha, PDO::PARAM_INT);
     $stmt->bindValue(':lvl', $level, PDO::PARAM_INT);
     $stmt->bindValue(':hp', $hp, PDO::PARAM_INT);
-
+       
     // Insert the data
     $stmt->execute();
-      echo "Hello ";
+   
     // Ask how many rows changed as a result of our insert
     $rowsChanged = $stmt->rowCount();
-      echo "there ";
+   
     // Close the database interaction
     $stmt->closeCursor();
-      echo "general ";
+   
     // Return the indication of success (rows changed)
     return $rowsChanged;
-}       echo "kenobi ";
+}
