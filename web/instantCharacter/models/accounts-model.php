@@ -2,18 +2,19 @@
 
 // Get client data based on a screenName
 function getUser($screenName) {
-    		echo "Hello";
+    		
     // Create a connection object using the acme connection function
     $db = herokuConnect();
         		echo "Hello";
     // The SQL statement to be used with the database
     $sql = 'SELECT userid, screenname, email, password '
             . ' FROM users WHERE screenname = :ScreenName';
-        
+        echo "there";
     // Create the prepared statement using the acme connection
     $stmt = $db->prepare($sql);
-        
+        echo "general";
     $stmt->bindValue(':ScreenName', $screenName, PDO::PARAM_STR);
+	echo "kenobi";
     $stmt->execute();
     $userData = $stmt->fetch(PDO::FETCH_ASSOC);
 	var_dump($userData);
