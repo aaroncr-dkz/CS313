@@ -4,7 +4,7 @@
 function getUser($screenName) {
     
     // Create a connection object using the acme connection function
-    $db = localConnect();
+    $db = herokuConnect();
         
     // The SQL statement to be used with the database
     $sql = 'SELECT userId, ScreenName, Email, Password FROM Users WHERE ScreenName = :ScreenName';
@@ -25,7 +25,7 @@ function getUser($screenName) {
 
 function getUserById($userId) {
     // Create a connection object using the acme connection function
-    $db = localConnect();
+    $db = herokuConnect();
         
     // The SQL statement to be used with the database
     $sql = 'SELECT userId, ScreenName, Email FROM Users WHERE userId = :userId';
@@ -46,7 +46,7 @@ function getUserById($userId) {
 
 function regUser($screenName, $password) {
 // Create a connection object using the acme connection function
-   $db = localConnect();
+   $db = herokuConnect();
    
 // The SQL statement
    $sql = 'INSERT INTO users (screenname, password) VALUES (:screenName, :password)';
@@ -73,7 +73,7 @@ function regUser($screenName, $password) {
 //check for already existing email addresses
 function checkExistingUsers($screenName) {
     // Create a connection object using the acme connection function
-    $db = localConnect();
+    $db = herokuConnect();
     
     // The SQL statement to be used with the database
     $sql = 'SELECT screenname FROM users WHERE screenname = :screenName';
@@ -98,7 +98,7 @@ function checkExistingUsers($screenName) {
 
 function updateUser($screenName, $email, $userId) {
 // Create a connection object using the connection function
-   $db = localConnect();
+   $db = herokuConnect();
    
 // The SQL statement
    $sql = 'UPDATE users SET screenname = :modname, Email = :modemail WHERE userId = :userId';
@@ -127,7 +127,7 @@ function updateUser($screenName, $email, $userId) {
 
 function updatePassword($password, $userId) {
 // Create a connection object using the connection function
-   $db = localConnect();
+   $db = herokuConnect();
    
 // The SQL statement
    $sql = 'UPDATE users SET Password = :modpass  WHERE userId = :userId';

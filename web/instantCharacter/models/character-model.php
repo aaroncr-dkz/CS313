@@ -4,7 +4,7 @@
 function getCharacters($userId) {
     
     // Create a connection object using the connection
-    $db = localConnect();
+    $db = herokuConnect();
         
     // The SQL statement to be used with the database
     $sql = 'SELECT CharacterId, CharacterName, CharacterLevel, r.RaceName, cl.ClassName'
@@ -29,7 +29,7 @@ function getCharacters($userId) {
 function getCharacter($characterId) {
     
     // Create a connection object using the connection
-    $db = localConnect();
+    $db = herokuConnect();
         
     // The SQL statement to be used with the database
     $sql = 'SELECT CharacterId, CharacterName, CharacterStrength, CharacterDexterity, CharacterConstitution, CharacterIntelligence, '
@@ -52,7 +52,7 @@ function getCharacter($characterId) {
 
 function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
-    $db = localConnect();
+    $db = herokuConnect();
    
     // The SQL statement
     $sql = 'INSERT INTO characters (userId, characterName, characterStrength, characterDexterity, 
@@ -94,7 +94,7 @@ function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $w
 
 function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
-    $db = localConnect();
+    $db = herokuConnect();
    
     // The SQL statement
     $sql = 'UPDATE characters SET characterName = :name, characterStrength = :str, characterDexterity = :dex, 
@@ -137,7 +137,7 @@ function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex
 
 function deleteCharacter($characterId, $userId) {
     // Create a connection object using the connection
-    $db = localConnect();
+    $db = herokuConnect();
    
     // The SQL statement
     $sql = 'DELETE FROM characters WHERE characterId = :charId AND userId = :userId';
