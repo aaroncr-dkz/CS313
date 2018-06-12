@@ -28,11 +28,11 @@
                 <form method="post" action="?action=edit-account">
                     <label>Username:</label>
                     <input type="text" name="screenName" 
-                        <?php echo "value='" . $_SESSION["userData"]["ScreenName"] . "'" ?> required>
+                        <?php echo "value='" . $_SESSION["userData"]["screenname"] . "'" ?> required>
                     
                     <label>Email:</label>
                     <input type="text" name="email" 
-                        <?php echo "value='" . $_SESSION["userData"]["Email"] . "'" ?> required>
+                        <?php echo "value='" . $_SESSION["userData"]["email"] . "'" ?> required>
                     
                     <input type="submit" value="Update Account">
                     
