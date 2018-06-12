@@ -17,7 +17,7 @@ if ($action == NULL) {
 
 switch ($action) {
     case 'saveCharacter':
-        $userId = filter_input(INPUT_POST, 'userId', FILTER_SANITIZE_NUMBER_INT);
+        $userId = $_SESSION["userData"]["userId"];
 
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
         $level = filter_input(INPUT_POST, 'level', FILTER_SANITIZE_NUMBER_INT);
@@ -37,7 +37,7 @@ switch ($action) {
         header("Location: ../accounts/?action=login");
         break;
     case "updateCharacter":
-        $userId = filter_input(INPUT_POST, 'userId', FILTER_SANITIZE_NUMBER_INT);
+        $userId = $_SESSION["userData"]["userId"];
         $characterId = filter_input(INPUT_POST, 'characterId', FILTER_SANITIZE_NUMBER_INT);
 
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
@@ -53,18 +53,9 @@ switch ($action) {
         $cha = filter_input(INPUT_POST, 'cha', FILTER_SANITIZE_NUMBER_INT);
         $hp = filter_input(INPUT_POST, 'health', FILTER_SANITIZE_NUMBER_INT);
 
-        $outcome = updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp);
-		echo $outcome;
-		// Check and report the result
-        if($outcome === 1){
-            header("Location: ../accounts/?action=login");
-            exit;
-        } else {
-            $message = "<p>Something went wrong, please try again.</p>";
-            header("Location: ../instantCharacter.php");
-            exit;
-        }
-        
+        updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp);
+
+        header("Location: ../accounts/?action=login");
         break;
     case "loadCharacter":
         // Filter and store the data
@@ -73,6 +64,21 @@ switch ($action) {
 
         $_SESSION['character'] = $character;
         header("Location: ../instantCharacter.php");
+        break;
+    case "deleteCharacter":
+        $characterId = filter_input(INPUT_GET, 'characterId', FILTER_SANITIZE_NUMBER_INT);
+        $userId = $_SESSION["userData"]["userId"];
+        
+        $result = deleteCharacter($characterId, $userId);
+        
+        if($result !== 1) {
+            $_SESSION["message"] = "<p>Something went wrong, that character could not be deleted</p>";
+            header("Location: ../accounts/?action=login");
+        }
+        else {
+            header("Location: ../accounts/?action=login");
+        }
+        
         break;
     default:
         header("Location: ../instantCharacter.php");

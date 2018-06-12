@@ -5,6 +5,7 @@ var outputLevel = document.getElementById("display-level");
 var outputRace = document.getElementById("display-race");
 var outputClass = document.getElementById("display-class");
 var outputBackground = document.getElementById("display-background");
+var lockBtn = document.getElementById("lockBtn");
 
 var inputLevel = document.getElementById("level");
 var inputRace = document.getElementById("race");
@@ -16,7 +17,7 @@ var charClass = "";
 var level = 1;
 var attsLocked = false;
 
-var totalAtts = [0,0,0,0,0,0];
+var totalAtts = [0, 0, 0, 0, 0, 0];
 
 
 var races = [
@@ -197,31 +198,39 @@ var classAttPrefs = {
 /*------------------------------------------------------------------------------
  * 
  -----------------------------------------------------------------------------*/
-inputLevel.addEventListener("input", function () {
-    outputLevel.innerHTML = "Lv. " + this.value;
-    level = this.value;
-    applyLevelUps(charClass, level);
-});
-inputRace.addEventListener("input", function () {
-    outputRace.innerHTML = races[this.value];
-    race = races[this.value];
-    addRaceBonus(race);
-    applyLevelUps(charClass, level);
-});
-inputClass.addEventListener("input", function () {
-    outputClass.innerHTML = classes[this.value];
-    charClass = classes[this.value];
-    rollRandAttributes(charClass);
-    applyLevelUps(charClass, level);
-});
-inputBackground.addEventListener("input", function () {
-    outputBackground.innerHTML = backgrounds[this.value];
-});
-
-document.getElementById("lockBtn").addEventListener("click", function(event){
-    event.preventDefault();
-}); 
-
+if (inputLevel !== null) {
+    inputLevel.addEventListener("input", function () {
+        outputLevel.innerHTML = "Lv. " + this.value;
+        level = this.value;
+        applyLevelUps(charClass, level);
+    });
+}
+if (inputRace !== null) {
+    inputRace.addEventListener("input", function () {
+        outputRace.innerHTML = races[this.value];
+        race = races[this.value];
+        addRaceBonus(race);
+        applyLevelUps(charClass, level);
+    });
+}
+if (inputClass !== null) {
+    inputClass.addEventListener("input", function () {
+        outputClass.innerHTML = classes[this.value];
+        charClass = classes[this.value];
+        rollRandAttributes(charClass);
+        applyLevelUps(charClass, level);
+    });
+}
+if (inputBackground !== null) {
+    inputBackground.addEventListener("input", function () {
+        outputBackground.innerHTML = backgrounds[this.value];
+    });
+}
+if (lockBtn !== null) {
+    document.getElementById("lockBtn").addEventListener("click", function (event) {
+        event.preventDefault();
+    });
+}
 
 /*------------------------------------------------------------------------------
  * 
@@ -230,12 +239,26 @@ function loadCharacter(theLevel, theRace, theClass, str, dex, con, int, wis, cha
     outputLevel.innerHTML = "Lv. " + theLevel;
     outputRace.innerHTML = races[theRace - 1];
     outputClass.innerHTML = classes[theClass - 1];
-    
+
     atts = [str, dex, con, int, wis, cha];
     applyToScreen(atts);
     lockAtts();
 }
 
+function confirmDelete(element, characterId) {
+    var result = confirm("Do you really want to delete that character?");
+    
+    if(result === false) {
+        return false;
+    }
+    else {
+        element.href = "../characters/?action=deleteCharacter&characterId=" + characterId;
+        return true;
+    }
+}
+/*------------------------------------------------------------------------------
+ * 
+ -----------------------------------------------------------------------------*/
 function rollRandAttributes(chosenClass) {
 
     //return of atts are locked
@@ -243,7 +266,7 @@ function rollRandAttributes(chosenClass) {
         return;
 
     // clear out the total atts array
-    for(var i = 0; i < 6; i++)
+    for (var i = 0; i < 6; i++)
         totalAtts[i] = 0;
 
     // continue on as normal
@@ -254,7 +277,7 @@ function rollRandAttributes(chosenClass) {
         stats[i] = rollOneAtt();
 
     // create temp array
-    var tempAtts = [0,0,0,0,0,0];
+    var tempAtts = [0, 0, 0, 0, 0, 0];
 
     // assign largest value to most prefered stat for that class
     // then, zero out that value
@@ -269,10 +292,10 @@ function rollRandAttributes(chosenClass) {
     stats[index] = 0;
 
     // fill in the rest of the temp array
-    for(var i = 0; i < 6; i++) {
-        if(stats[i] !== 0) {
-            for(var j = 0; j < 6; j++) {
-                if(tempAtts[j] === 0) {
+    for (var i = 0; i < 6; i++) {
+        if (stats[i] !== 0) {
+            for (var j = 0; j < 6; j++) {
+                if (tempAtts[j] === 0) {
                     tempAtts[j] = stats[i];
                     stats[i] = 0;
                 }
@@ -281,7 +304,7 @@ function rollRandAttributes(chosenClass) {
     }
 
     // copy back into the original stats array
-    for(var i = 0; i < 6; i++) {
+    for (var i = 0; i < 6; i++) {
         stats[i] = tempAtts[i];
         totalAtts[i] = stats[i];
     }
@@ -292,95 +315,92 @@ function rollRandAttributes(chosenClass) {
 function applyLevelUps(chosenClass, lvl) {
     // can't appropiately apply level ups without knowing what
     // class is being used
-    if(chosenClass === "")
+    if (chosenClass === "")
         return;
 
     var hp = 0;
     var conMod = Number(document.getElementById("conMod").innerText);
 
     // apply hit points
-    if(chosenClass === "Barbarian") {
+    if (chosenClass === "Barbarian") {
         hp = 12 + conMod + ((7 + conMod) * (lvl - 1));
-    }
-    else if(chosenClass === "Fighter" || chosenClass === "Paladin" || chosenClass === "Ranger") {
+    } else if (chosenClass === "Fighter" || chosenClass === "Paladin" || chosenClass === "Ranger") {
         hp = 10 + conMod + ((6 + conMod) * (lvl - 1));
-    }
-    else if(chosenClass === "Sorcerer" || chosenClass === "Wizard") {
+    } else if (chosenClass === "Sorcerer" || chosenClass === "Wizard") {
         hp = 6 + conMod + ((4 + conMod) * (lvl - 1));
-    }
-    else {
+    } else {
         hp = 8 + conMod + ((5 + conMod) * (lvl - 1));
     }
     document.getElementById("hp").innerHTML = hp;
     document.getElementById("health").value = hp;
 
-/*
-    var lvldAtts = [0,0,0,0,0,0];
-    // apply ability score increases
-    if(lvl >= 4) {
-        lvldAtts[rollOneDie()] += 2;
-    }
-    if(lvl >= 6 && chosenClass === "Fighter") {
-        lvldAtts[rollOneDie()] += 2;
-    }
-    if(lvl >= 8) {
-        lvldAtts[rollOneDie()] += 2;
-    }
-    if(lvl >= 10 && chosenClass === "Rogue") {
-        lvldAtts[rollOneDie()] += 2;
-    }
-    if(lvl >= 12) {
-        lvldAtts[rollOneDie()] += 2;
-    }
-    if(lvl >= 14 && chosenClass === "Fighter") {
-        lvldAtts[rollOneDie()] += 2;
-    }
-    if(lvl >= 16) {
-        lvldAtts[rollOneDie()] += 2;
-    }
-    if(lvl >= 19) {
-        lvldAtts[rollOneDie()] += 2;
-    }
-
-    for(var i = 0; i < 6; i++) {
-       totalAtts[i] += lvldAtts[i];
-    }
-*/
+    /*
+     var lvldAtts = [0,0,0,0,0,0];
+     // apply ability score increases
+     if(lvl >= 4) {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     if(lvl >= 6 && chosenClass === "Fighter") {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     if(lvl >= 8) {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     if(lvl >= 10 && chosenClass === "Rogue") {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     if(lvl >= 12) {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     if(lvl >= 14 && chosenClass === "Fighter") {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     if(lvl >= 16) {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     if(lvl >= 19) {
+     lvldAtts[rollOneDie()] += 2;
+     }
+     
+     for(var i = 0; i < 6; i++) {
+     totalAtts[i] += lvldAtts[i];
+     }
+     */
 }
 
 function addRaceBonus(chosenRace) {
     chosenRace = removeSpaceAndDash(chosenRace);
     bonuses = raceBonus[chosenRace];
 
-    var atts = [0,0,0,0,0,0];
-    var mods = [0,0,0,0,0,0];
+    var atts = [0, 0, 0, 0, 0, 0];
+    var mods = [0, 0, 0, 0, 0, 0];
 
-    if(bonuses.str !== undefined)
+    if (bonuses.str !== undefined)
         atts[0] += Number(bonuses.str);
 
-    if(bonuses.dex !== undefined)
+    if (bonuses.dex !== undefined)
         atts[1] += Number(bonuses.dex);
 
-    if(bonuses.con !== undefined)
+    if (bonuses.con !== undefined)
         atts[2] += Number(bonuses.con);
 
-    if(bonuses.int !== undefined)
+    if (bonuses.int !== undefined)
         atts[3] += Number(bonuses.int);
 
-    if(bonuses.wis !== undefined)
+    if (bonuses.wis !== undefined)
         atts[4] += Number(bonuses.wis);
 
-    if(bonuses.cha !== undefined)
+    if (bonuses.cha !== undefined)
         atts[5] += Number(bonuses.cha);
 
-    for(var i = 0; i < 6; i++)
+    for (var i = 0; i < 6; i++)
         atts[i] += totalAtts[i];
 
     applyToScreen(atts);
 }
 
 function indexOflargestInArray(theArray) {
-    Array.max = function(theArray) {
+    Array.max = function (theArray) {
         return Math.max.apply(Math, theArray);
     };
 
@@ -391,12 +411,11 @@ function indexOflargestInArray(theArray) {
 }
 
 function lockAtts() {
-    if(attsLocked === true) {
+    if (attsLocked === true) {
         attsLocked = false;
         document.getElementById("lockBtn").style.border = "2px outset gold";
         document.getElementById("lockBtn").innerHTML = "Lock";
-    }
-    else {
+    } else {
         attsLocked = true;
         document.getElementById("lockBtn").style.border = "2px inset gold";
         document.getElementById("lockBtn").innerHTML = "Unlock";
@@ -407,8 +426,8 @@ function removeSpaceAndDash(string) {
     var length = string.length;
     var newString = string;
 
-    for(var i = 0; i < length; i++) {
-        if(string[i] === ' ' || string[i] === '-') {
+    for (var i = 0; i < length; i++) {
+        if (string[i] === ' ' || string[i] === '-') {
             newString = string.slice(0, i);
             newString += string.slice(i + 1);
         }
@@ -424,7 +443,7 @@ function rollOneAtt() {
         rolls[i] = rollOneDie();
     }
 
-    Array.min = function(rolls) {
+    Array.min = function (rolls) {
         return Math.min.apply(Math, rolls);
     };
 
@@ -447,7 +466,7 @@ function rollOneDie() {
 }
 
 function applyToScreen(atts) {
-    mods = [0,0,0,0,0,0];
+    mods = [0, 0, 0, 0, 0, 0];
 
     document.getElementById("strScore").value = atts[0];
     document.getElementById("strDisplay").innerHTML = atts[0];

@@ -4,12 +4,12 @@
 function getCharacters($userId) {
     
     // Create a connection object using the connection
-    $db = herokuConnect();
+    $db = localConnect();
         
     // The SQL statement to be used with the database
-    $sql = 'SELECT characterid, charactername, characterlevel, r.racename, cl.classname'
-            . ' FROM characters c INNER JOIN races r ON c.raceid = r.raceid INNER JOIN classes cl'
-            . ' ON c.classid = cl.classid WHERE userid = :userId';
+    $sql = 'SELECT CharacterId, CharacterName, CharacterLevel, r.RaceName, cl.ClassName'
+            . ' FROM Characters c INNER JOIN Races r ON c.RaceId = r.RaceId INNER JOIN Classes cl'
+            . ' ON c.ClassId = cl.ClassId WHERE UserId = :userId';
         
     // Create the prepared statement using the connection
     $stmt = $db->prepare($sql);
@@ -17,7 +17,7 @@ function getCharacters($userId) {
     $stmt->bindValue(':userId', $userId, PDO::PARAM_STR);
     $stmt->execute();
     $characters = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	
+        
     // Close the database interaction
     $stmt->closeCursor();
         
@@ -29,12 +29,12 @@ function getCharacters($userId) {
 function getCharacter($characterId) {
     
     // Create a connection object using the connection
-    $db = herokuConnect();
+    $db = localConnect();
         
     // The SQL statement to be used with the database
-    $sql = 'SELECT characterid, charactername, characterstrength, characterdexterity, characterconstitution, characterintelligence, '
-            . ' characterwisdom, charactercharisma, characterlevel, characterhealth, raceid, classid'
-            . ' FROM characters WHERE characterid = :characterId';
+    $sql = 'SELECT CharacterId, CharacterName, CharacterStrength, CharacterDexterity, CharacterConstitution, CharacterIntelligence, '
+            . ' CharacterWisdom, CharacterCharisma, CharacterLevel, CharacterHealth, RaceId, ClassId'
+            . ' FROM Characters WHERE CharacterId = :characterId';
         
     // Create the prepared statement using the connection
     $stmt = $db->prepare($sql);
@@ -52,12 +52,12 @@ function getCharacter($characterId) {
 
 function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
-    $db = herokuConnect();
+    $db = localConnect();
    
     // The SQL statement
-    $sql = 'INSERT INTO characters (userid, charactername, characterstrength, characterdexterity, 
-                                    characterconstitution, characterintelligence, characterwisdom,
-                                    charactercharisma, characterlevel, characterhealth, raceid, classid)
+    $sql = 'INSERT INTO characters (userId, characterName, characterStrength, characterDexterity, 
+                                    characterConstitution, characterIntelligence, characterWisdom,
+                                    characterCharisma, characterLevel, characterHealth, raceId, classId)
             VALUES (:id, :name, :str, :dex, :con, :int, :wis, :cha, :lvl, :hp, :race, :class)';
    
     // Create the prepared statement using the connection
@@ -94,14 +94,14 @@ function saveCharacter($userId, $name, $race, $class, $str, $dex, $con, $int, $w
 
 function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp) {
     // Create a connection object using the connection
-    $db = herokuConnect();
-   		echo "$userId, $characterId, $name, $race, $class, $str, $dex, $con, $int, $wis, $cha, $level, $hp\n";
+    $db = localConnect();
+   
     // The SQL statement
-    $sql = 'UPDATE characters SET userId = :userId, characterName = :name, characterStrength = :str, characterDexterity = :dex, 
+    $sql = 'UPDATE characters SET characterName = :name, characterStrength = :str, characterDexterity = :dex, 
                                   characterConstitution = :con, characterIntelligence = :int, characterWisdom = :wis,
                                   characterCharisma = :cha, characterLevel = :lvl, characterHealth = :hp, raceId = :race, 
-                                  classId = :class WHERE characterId = :charId';
-
+                                  classId = :class WHERE characterId = :charId AND userId = :userId';
+   
     // Create the prepared statement using the connection
     $stmt = $db->prepare($sql);
    
@@ -121,8 +121,37 @@ function updateCharacter($userId, $characterId, $name, $race, $class, $str, $dex
     $stmt->bindValue(':cha', $cha, PDO::PARAM_INT);
     $stmt->bindValue(':lvl', $level, PDO::PARAM_INT);
     $stmt->bindValue(':hp', $hp, PDO::PARAM_INT);
+       
+    // Insert the data
+    $stmt->execute();
+   
+    // Ask how many rows changed as a result of our insert
+    $rowsChanged = $stmt->rowCount();
+   
+    // Close the database interaction
+    $stmt->closeCursor();
+   
+    // Return the indication of success (rows changed)
+    return $rowsChanged;
+}
 
-	var_dump($stmt);
+function deleteCharacter($characterId, $userId) {
+    // Create a connection object using the connection
+    $db = localConnect();
+   
+    // The SQL statement
+    $sql = 'DELETE FROM characters WHERE characterId = :charId AND userId = :userId';
+   
+    // Create the prepared statement using the connection
+    $stmt = $db->prepare($sql);
+   
+// The next lines replace the placeholders in the SQL
+// statement with the actual values in the variables
+// and tells the database the type of data it is
+    $stmt->bindValue(':charId', $characterId, PDO::PARAM_INT);
+    $stmt->bindValue(':userId', $userId, PDO::PARAM_INT);
+
+       
     // Insert the data
     $stmt->execute();
    

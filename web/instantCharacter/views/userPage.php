@@ -11,14 +11,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width">
-        <title><?php echo $_SESSION["userData"]["screenname"]; ?>'s Home Page</title>
+        <title><?php echo $_SESSION["userData"]["ScreenName"]; ?>'s Home Page</title>
         <link href="../style.css" rel="stylesheet" type="text/css" />
-
+        <script src="../script.js" type="text/javascript"></script>
     </head>
 
     <body>
         <header>
-            <h1>Welcome <?php echo $_SESSION["userData"]["screenname"]; ?></h1>
+            <h1>Welcome <?php echo $_SESSION["userData"]["ScreenName"]; ?></h1>
         </header>
 
         <nav>
@@ -26,9 +26,16 @@
         </nav>
 
         <main id="character-display">
+            <?php if(isset($_SESSION["message"])) {echo $_SESSION["message"]; session_unset($_SESSION["message"]); } ?>
+            <a href="?action=logout">Logout</a>
+            
             <section>
-                <h2></h2>
-                <a href="?action=logout">Logout</a>
+                <h2>Your Profile</h2>
+                <ul>
+                    <li>Username: <?php echo $_SESSION["userData"]["ScreenName"] ?></li>
+                    <li>Email: <?php echo $_SESSION["userData"]["Email"] ?></li>
+                </ul>
+                <a class="anchor-no-visited" href="?action=update-account">Edit Account</a> 
             </section>
             
             <section>
@@ -36,10 +43,12 @@
                 <ul>
                     <?php foreach ($characters as $character) {
                         echo "<li>";
+                        echo "<a class='anchor-no-visited' onclick='return confirmDelete(this, $character[CharacterId])' "
+                           . "href='#'>Delete</a> ";
                         echo "<a class='anchor-no-visited anchor-no-underline' "
-                           . "href='../characters/?action=loadCharacter&characterId=$character[characterid]'>";
-                        echo "$character[charactername], Lv. $character[characterlevel] "
-                           . "$character[racename] $character[classname]";
+                           . "href='../characters/?action=loadCharacter&characterId=$character[CharacterId]'>";
+                        echo "$character[CharacterName], Lv. $character[CharacterLevel] "
+                           . "$character[RaceName] $character[ClassName]";
                         echo "</a></li>";
                     } ?>
                 </ul>
@@ -49,6 +58,7 @@
         
         <footer>
         </footer>
+        
     </body>
 
 </html>

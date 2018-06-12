@@ -4,7 +4,24 @@
  * Database Connections
  */
 
-function herokuConnect() {
+function localConnect() {
+    $server = "localhost";
+    $database = "instant_character";
+    $username = "iClient";
+    $password = "z15H8rpmxGo7luVS";
+
+    $dsn = "mysql:host=$server;dbname=$database;";
+    $options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
+
+    try {
+        $link = new PDO($dsn, $username, $password, $options);
+        return $link;
+    } catch (Exception $ex) {
+        echo "Server Error";
+    }
+}
+
+function herokuConnection() {
 	try {
 		$dbUrl = getenv('DATABASE_URL');
 		
@@ -19,8 +36,6 @@ function herokuConnect() {
 		$db = new PDO("pgsql:host=$dbHost;port=$dbPort;dbname=$dbName", $dbUser, $dbPassword);
 
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
-		return $db;
 		
 	}
 	catch (PDOException $ex) {
