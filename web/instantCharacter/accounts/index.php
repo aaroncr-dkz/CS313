@@ -88,7 +88,7 @@ switch ($action) {
         }
 
         // Check for missing data
-        if(empty($screenName) || || empty($email) || empty($password)){
+        if(empty($screenName) || empty($email) || empty($password)){
             $message = '<p>Please provide information for all empty form fields.</p>';
             include '../views/register.php';
             exit;
