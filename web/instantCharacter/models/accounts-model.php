@@ -49,7 +49,7 @@ function regUser($screenName, $password) {
    $db = herokuConnect();
    
 // The SQL statement
-   $sql = 'INSERT INTO users (screenname, password) VALUES (:screenName, :password)';
+   $sql = 'INSERT INTO users (screenname, email, password) VALUES (:screenName, "", :password)';
    
 // Create the prepared statement using the acme connection
    $stmt = $db->prepare($sql);

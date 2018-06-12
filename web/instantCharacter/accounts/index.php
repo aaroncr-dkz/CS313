@@ -49,7 +49,7 @@ switch ($action) {
         // If the hashes don't match create an error and return to the login view
         if (!$hashCheck) {
             $message = '<p>Please provide a valid username and password</p>';
-            include '../login.php';
+            include '../views/login.php';
             exit;
         }
 
