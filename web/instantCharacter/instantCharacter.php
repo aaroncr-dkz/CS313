@@ -4,12 +4,12 @@ session_start();
 if (isset($_SESSION['character'])) {
     $character = $_SESSION['character'];
 
-    $str = $character['CharacterStrength'];
-    $dex = $character['CharacterDexterity'];
-    $con = $character['CharacterConstitution'];
-    $int = $character['CharacterIntelligence'];
-    $wis = $character['CharacterWisdom'];
-    $cha = $character['CharacterCharisma'];
+    $str = $character['characterstrength'];
+    $dex = $character['characterdexterity'];
+    $con = $character['characterconstitution'];
+    $int = $character['characterintelligence'];
+    $wis = $character['characterwisdom'];
+    $cha = $character['charactercharisma'];
 }
 ?>
 
