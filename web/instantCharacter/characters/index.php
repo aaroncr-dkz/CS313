@@ -17,7 +17,7 @@ if ($action == NULL) {
 
 switch ($action) {
     case 'saveCharacter':
-        $userId = $_SESSION["userData"]["userId"];
+        $userId = $_SESSION["userData"]["userid"];
 
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
         $level = filter_input(INPUT_POST, 'level', FILTER_SANITIZE_NUMBER_INT);
@@ -37,7 +37,7 @@ switch ($action) {
         header("Location: ../accounts/?action=login");
         break;
     case "updateCharacter":
-        $userId = $_SESSION["userData"]["userId"];
+        $userId = $_SESSION["userData"]["userid"];
         $characterId = filter_input(INPUT_POST, 'characterId', FILTER_SANITIZE_NUMBER_INT);
 
         $name = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
@@ -67,7 +67,7 @@ switch ($action) {
         break;
     case "deleteCharacter":
         $characterId = filter_input(INPUT_GET, 'characterId', FILTER_SANITIZE_NUMBER_INT);
-        $userId = $_SESSION["userData"]["userId"];
+        $userId = $_SESSION["userData"]["userid"];
         
         $result = deleteCharacter($characterId, $userId);
         
