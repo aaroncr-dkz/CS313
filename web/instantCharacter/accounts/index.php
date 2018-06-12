@@ -20,7 +20,7 @@ switch ($action) {
     case 'login':
         if (isset($_SESSION['userData'])) {
             //now get the character's associated with this user
-            $characters = getCharacters($_SESSION['userData']['userId']);
+            $characters = getCharacters($_SESSION['userData']['userid']);
 
             include "../views/userPage.php";
             exit;
@@ -44,7 +44,7 @@ switch ($action) {
         $userData = getUser($screenName);
 
         // Compare the password just submitted against the hashed password for the matching client
-        $hashCheck = password_verify($password, $userData['Password']);
+        $hashCheck = password_verify($password, $userData['password']);
 
         // If the hashes don't match create an error and return to the login view
         if (!$hashCheck) {
@@ -61,7 +61,7 @@ switch ($action) {
         $_SESSION['userData'] = $userData;
 
         //now get the character's associated with this user
-        $characters = getCharacters($_SESSION['userData']['userId']);
+        $characters = getCharacters($_SESSION['userData']['userid']);
 
         include "../views/userPage.php";
         break;
@@ -120,7 +120,7 @@ switch ($action) {
         $id = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
         
 
-        if($screenName != $_SESSION['userData']['ScreenName']) {
+        if($screenName != $_SESSION['userData']['screenname']) {
             //check for existing screenName
             $duplicateUser = checkExistingUsers($screenName);
             
@@ -140,12 +140,12 @@ switch ($action) {
         }
 
         // Send the data to the model
-        $updateOutcome = updateUser($screenName, $email, $_SESSION['userData']['userId']);
+        $updateOutcome = updateUser($screenName, $email, $_SESSION['userData']['userid']);
 
         // Check and report the result
         if($updateOutcome === 1){
             $message = "<p>Your account has been updated.</p>";
-            $userData = getUserById($_SESSION['userData']['userId']);
+            $userData = getUserById($_SESSION['userData']['userid']);
             $_SESSION['userData'] = $userData;
             header ("Location: ?action=login");
             exit;
