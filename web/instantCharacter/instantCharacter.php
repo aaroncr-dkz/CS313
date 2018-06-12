@@ -46,7 +46,7 @@ if (isset($_SESSION['character'])) {
             <section>
                 <h2></h2>
 
-                <form method="post" action="characters/?action=saveCharacter">
+                <form method="post" action="characters/">
                     <label>Character Name: </label>
                     <input type="text" placeholder="Character Name" name="name" required 
                         <?php if (isset($character)) {echo "value='$character[charactername]'";} ?> 
