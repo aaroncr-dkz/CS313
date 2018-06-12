@@ -11,14 +11,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width">
-        <title><?php echo $_SESSION["userData"]["ScreenName"]; ?>'s Home Page</title>
+        <title><?php echo $_SESSION["userData"]["screenname"]; ?>'s Home Page</title>
         <link href="../style.css" rel="stylesheet" type="text/css" />
         <script src="../script.js" type="text/javascript"></script>
     </head>
 
     <body>
         <header>
-            <h1>Welcome <?php echo $_SESSION["userData"]["ScreenName"]; ?></h1>
+            <h1>Welcome <?php echo $_SESSION["userData"]["screenname"]; ?></h1>
         </header>
 
         <nav>
@@ -32,8 +32,8 @@
             <section>
                 <h2>Your Profile</h2>
                 <ul>
-                    <li>Username: <?php echo $_SESSION["userData"]["ScreenName"] ?></li>
-                    <li>Email: <?php echo $_SESSION["userData"]["Email"] ?></li>
+                    <li>Username: <?php echo $_SESSION["userData"]["screenname"] ?></li>
+                    <li>Email: <?php echo $_SESSION["userData"]["email"] ?></li>
                 </ul>
                 <a class="anchor-no-visited" href="?action=update-account">Edit Account</a> 
             </section>
@@ -43,12 +43,12 @@
                 <ul>
                     <?php foreach ($characters as $character) {
                         echo "<li>";
-                        echo "<a class='anchor-no-visited' onclick='return confirmDelete(this, $character[CharacterId])' "
+                        echo "<a class='anchor-no-visited' onclick='return confirmDelete(this, $character[characterid])' "
                            . "href='#'>Delete</a> ";
                         echo "<a class='anchor-no-visited anchor-no-underline' "
-                           . "href='../characters/?action=loadCharacter&characterId=$character[CharacterId]'>";
-                        echo "$character[CharacterName], Lv. $character[CharacterLevel] "
-                           . "$character[RaceName] $character[ClassName]";
+                           . "href='../characters/?action=loadCharacter&characterId=$character[characterid]'>";
+                        echo "$character[charactername], Lv. $character[characterlevel] "
+                           . "$character[racename] $character[classname]";
                         echo "</a></li>";
                     } ?>
                 </ul>
