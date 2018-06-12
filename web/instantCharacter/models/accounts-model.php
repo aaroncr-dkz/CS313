@@ -44,7 +44,7 @@ function getUserById($userId) {
     return $userData;  
 }
 
-function regUser($screenName, $password) {
+function regUser($screenName, $email, $password) {
 // Create a connection object using the acme connection function
    $db = herokuConnect();
    
